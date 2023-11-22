@@ -1,0 +1,16 @@
+module.exports = {
+  printWidth: 160,
+  semi: true,
+  singleQuote: true,
+  tabWidth: 2,
+  trailingComma: 'es5',
+  useTabs: false,
+  jsxSingleQuote: true,
+  bracketSpacing: true,
+  bracketSameLine: false,
+  arrowParens: 'always',
+  endOfLine: 'crlf',
+  importOrder: ['^@\\w', '^@/', '^../', '^./'],
+  importOrderSeparation: true,
+  importOrderSortSpecifiers: true,
+};
