@@ -6,7 +6,7 @@ function App() {
   return (
     <CounterContextProvider>
       <div className='App'>
-        <Counter />
+        <Counter initialValue={5} />
       </div>
     </CounterContextProvider>
   );

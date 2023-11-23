@@ -1,9 +1,20 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import './Counter.css';
 import CounterContext from './store/CounterContext';
 
-export const Counter: React.FC = () => {
-  const { count, addOne, subtractOne, reset } = useContext(CounterContext);
+interface ICounterProps {
+  initialValue?: number;
+}
+
+export const Counter: React.FC<ICounterProps> = ({ initialValue }) => {
+  const { count, addOne, subtractOne, reset, setValue } = useContext(CounterContext);
+
+  const setCounterValue = () => initialValue && setValue && setValue(initialValue);
+
+  useEffect(() => {
+    setCounterValue();
+  }, []);
+
   return (
     <>
       <header className='counter-container'>
@@ -11,15 +22,9 @@ export const Counter: React.FC = () => {
         <h1>{count}</h1>
       </header>
       <header className='button-container'>
-        <button className='button' onClick={subtractOne}>
-          -
-        </button>
-        <button className='button' onClick={reset}>
-          Reset
-        </button>
-        <button className='button' onClick={addOne}>
-          +
-        </button>
+        <button onClick={subtractOne}>-</button>
+        <button onClick={initialValue ? setCounterValue : reset}>Reset</button>
+        <button onClick={addOne}>+</button>
       </header>
     </>
   );

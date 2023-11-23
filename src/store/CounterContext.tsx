@@ -7,6 +7,7 @@ type CounterContextType = {
   addOne?: () => void;
   subtractOne?: () => void;
   reset?: () => void;
+  setValue?: (value: number) => void;
   count: number;
 };
 
@@ -27,7 +28,11 @@ export const CounterContextProvider = ({ children }: IProps) => {
     setCount(0);
   };
 
-  return <CounterContext.Provider value={{ count, addOne, subtractOne, reset }}>{children}</CounterContext.Provider>;
+  const setValue = (value: number) => {
+    value >= 0 && setCount(value);
+  };
+
+  return <CounterContext.Provider value={{ count, addOne, subtractOne, reset, setValue }}>{children}</CounterContext.Provider>;
 };
 
 export default CounterContext;
